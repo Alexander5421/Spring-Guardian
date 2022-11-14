@@ -1,0 +1,68 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using PathCreation;
+using UnityEngine;
+
+public class Enemy : MonoBehaviour
+{
+    public PathCreator pathCreator;
+
+    public float speed = 5;
+
+    // damage caused to player if the enemy reach the capture point
+    public int point = 1;
+
+    private int health =1;
+    
+    public int MaxHealth = 100;
+    
+    // event OnDeath
+    public event Action<Enemy> OnDeath; 
+
+    private float distanceSofar = 0;
+
+    public float Progress
+    {
+        get { return distanceSofar / pathCreator.path.length; }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        if (pathCreator == null)
+        {
+            Debug.LogError($"{gameObject.name} does not have a path to follow");
+        }
+        health = MaxHealth;
+    }
+    
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            // log
+            Destroy(gameObject);
+            Debug.Log($"{gameObject.name} has died");
+            OnDeath?.Invoke(this);
+        }
+    }
+
+
+    private void FixedUpdate()
+    {
+        distanceSofar += speed * Time.fixedDeltaTime;
+        transform.position = pathCreator.path.GetPointAtDistance(distanceSofar,EndOfPathInstruction.Stop);
+    }
+    
+    // show enemy health bar use gizmos
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position + Vector3.up * 0.5f, new Vector3(1, 0.1f, 1));
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(transform.position + Vector3.up * 0.5f, new Vector3((float)health / MaxHealth, 0.1f, 1));
+    }
+    
+}
