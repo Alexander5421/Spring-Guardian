@@ -248,6 +248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 373424912}
   - component: {fileID: 373424913}
+  - component: {fileID: 373424914}
   m_Layer: 0
   m_Name: WayPoints
   m_TagString: Untagged
@@ -374,6 +375,25 @@ MonoBehaviour:
     showNormalsHelpInfo: 0
     tabIndex: 0
   initialized: 1
+--- !u!114 &373424914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373424911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 973c6772b0c74e16836444f2b64e6fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnManager: {fileID: 1397464253}
+  pathIndex: 0
+  enemy: 000000000100000001000000
+  spawnInterval:
+  - 1
+  - 2
+  - 1
 --- !u!1 &469607292
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,6 +613,7 @@ GameObject:
   m_Component:
   - component: {fileID: 476426916}
   - component: {fileID: 476426917}
+  - component: {fileID: 476426918}
   m_Layer: 0
   m_Name: WayPoints (1)
   m_TagString: Untagged
@@ -735,6 +756,25 @@ MonoBehaviour:
     showNormalsHelpInfo: 0
     tabIndex: 0
   initialized: 1
+--- !u!114 &476426918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476426915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 973c6772b0c74e16836444f2b64e6fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnManager: {fileID: 1397464253}
+  pathIndex: 1
+  enemy: 000000000100000001000000
+  spawnInterval:
+  - 1
+  - 2
+  - 1
 --- !u!1 &805914440
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,6 +785,7 @@ GameObject:
   m_Component:
   - component: {fileID: 805914441}
   - component: {fileID: 805914442}
+  - component: {fileID: 805914443}
   m_Layer: 0
   m_Name: WayPoints (2)
   m_TagString: Untagged
@@ -879,6 +920,25 @@ MonoBehaviour:
     showNormalsHelpInfo: 0
     tabIndex: 0
   initialized: 1
+--- !u!114 &805914443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805914440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 973c6772b0c74e16836444f2b64e6fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnManager: {fileID: 1397464253}
+  pathIndex: 2
+  enemy: 000000000100000001000000
+  spawnInterval:
+  - 1
+  - 2
+  - 1
 --- !u!1 &1397464252
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,22 +969,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedRandomizer: 0.2
-  waves:
-  - delay: 0.5
-    enemies:
-    - {fileID: 2217169733043320847, guid: 78145c0e5a7dfba48887d02174b9216d, type: 3}
-    - {fileID: 2217169733043320847, guid: 78145c0e5a7dfba48887d02174b9216d, type: 3}
-    - {fileID: 3670961678158727980, guid: 92d156f86fe06604c970bf0e819839e7, type: 3}
-  - delay: 0.5
-    enemies:
-    - {fileID: 3670961678158727980, guid: 92d156f86fe06604c970bf0e819839e7, type: 3}
-    - {fileID: 3670961678158727980, guid: 92d156f86fe06604c970bf0e819839e7, type: 3}
-    - {fileID: 2217169733043320847, guid: 78145c0e5a7dfba48887d02174b9216d, type: 3}
   paths:
   - {fileID: 373424913}
   - {fileID: 476426917}
   - {fileID: 805914442}
-  timer: 0
+  enemyPrefabs:
+  - {fileID: 2217169733043320847, guid: 78145c0e5a7dfba48887d02174b9216d, type: 3}
+  - {fileID: 3670961678158727980, guid: 92d156f86fe06604c970bf0e819839e7, type: 3}
+  existingEnemies: []
 --- !u!4 &1397464254
 Transform:
   m_ObjectHideFlags: 0
