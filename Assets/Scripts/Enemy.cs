@@ -18,7 +18,10 @@ public class Enemy : MonoBehaviour
     public int MaxHealth = 100;
     
     // event OnDeath
-    public event Action<Enemy> OnDeath; 
+    public event Action<Enemy> OnDeath;
+
+    // enemy quit from the game
+    public event Action<Enemy> OnQuit;
 
     private float distanceSofar = 0;
 
@@ -43,10 +46,17 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             // log
+            OnDeath?.Invoke(this);
+            OnQuit?.Invoke(this);
             Destroy(gameObject);
             Debug.Log($"{gameObject.name} has died");
-            OnDeath?.Invoke(this);
+
         }
+    }
+
+    public void ReachEnd()
+    {
+        OnQuit?.Invoke(this);
     }
 
 
