@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
 
     // damage caused to player if the enemy reach the capture point
     public int point = 1;
+    
+    public HealthBar healthBar;
 
     private int health =1;
     
@@ -43,6 +45,8 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        // update health bar
+        healthBar.healthRatio = (float) health / MaxHealth;
         if (health <= 0)
         {
             // log
@@ -67,12 +71,12 @@ public class Enemy : MonoBehaviour
     }
     
     // show enemy health bar use gizmos
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position + Vector3.up * 0.5f, new Vector3(1, 0.1f, 1));
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(transform.position + Vector3.up * 0.5f, new Vector3((float)health / MaxHealth, 0.1f, 1));
-    }
+    // private void OnDrawGizmos()
+    // {
+    //     Gizmos.color = Color.red;
+    //     Gizmos.DrawWireCube(transform.position + Vector3.up * 0.5f, new Vector3(1, 0.1f, 1));
+    //     Gizmos.color = Color.green;
+    //     Gizmos.DrawWireCube(transform.position + Vector3.up * 0.5f, new Vector3((float)health / MaxHealth, 0.1f, 1));
+    // }
     
 }
