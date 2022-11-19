@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
     public int point = 1;
     
     public HealthBar healthBar;
+    
+    public int reward = 10;
 
     private int health =1;
     
@@ -52,6 +54,7 @@ public class Enemy : MonoBehaviour
             // log
             OnDeath?.Invoke(this);
             OnQuit?.Invoke(this);
+            GameManager.Instance.playerData.Money += reward;
             Destroy(gameObject);
             Debug.Log($"{gameObject.name} has died");
 

@@ -29,6 +29,7 @@ public class playerHand : MonoBehaviour
         {
             card.foreGround.SetActive(false);
         }
+        Refresh();
     }
 
     public void Refresh()
@@ -44,5 +45,44 @@ public class playerHand : MonoBehaviour
                 cards[i].foreGround.SetActive(false);
             }
         }
+    }
+    
+    public void DisableAllButtons()
+    {
+        foreach (HandSlot card in cards)
+        {
+            card.deleteButton.gameObject.SetActive(false);
+        }
+    }
+    
+    public void EnableAllButtons()
+    {
+        foreach (HandSlot card in cards)
+        {
+            card.deleteButton.gameObject.SetActive(true);
+        }
+    }
+
+    public void FadeCard(int index)
+    {
+        // change the alpha of the card to 0.5
+        // test index is valid
+        if (index < 0 || index >= cards.Count)
+        {
+            return;
+        }
+        cards[index].renderer.color = new Color(1, 1, 1, 0.5f);
+        
+    }
+    
+    // restore the alpha of the card to 1
+    public void RestoreCard(int index)
+    {
+        // test index is valid
+        if (index < 0 || index >= cards.Count)
+        {
+            return;
+        }
+        cards[index].renderer.color = new Color(1, 1, 1, 1);
     }
 }

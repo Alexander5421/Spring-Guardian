@@ -21,6 +21,7 @@ public class SpawnManager : MonoBehaviour
     {
         Enemy enemyPrefab = enemyPrefabs[enemyIndex];
         GameObject enemyObject = Instantiate(enemyPrefab.gameObject);
+        enemyObject.transform.parent = transform;
         Enemy enemyScript = enemyObject.GetComponent<Enemy>();
         existingEnemies.Add(enemyScript);
         enemyScript.OnQuit += EnemyQuit;

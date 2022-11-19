@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4398407646344410538
 Transform:
   m_ObjectHideFlags: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 7420468133461594424}
   foreGround: {fileID: 7732477894945430972}
-  deleteButton: {fileID: 0}
+  deleteButton: {fileID: 7203576431607435246}
   index: 0
 --- !u!1 &3324107825591913091
 GameObject:
