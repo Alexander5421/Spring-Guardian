@@ -532,7 +532,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &183566530
 GameObject:
@@ -566,7 +566,7 @@ Transform:
   - {fileID: 127042479}
   - {fileID: 469607293}
   m_Father: {fileID: 471581436}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &190000328
 GameObject:
@@ -1139,7 +1139,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373424911}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.4230943, y: -0.5675771, z: 4.825915}
+  m_LocalPosition: {x: -4.4230947, y: -0.5675771, z: 4.825915}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1562,7 +1562,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 471581436}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &471581435
 GameObject:
@@ -1579,7 +1579,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &471581436
 Transform:
   m_ObjectHideFlags: 0
@@ -1592,11 +1592,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1397464254}
   - {fileID: 2080020213}
   - {fileID: 183566531}
   - {fileID: 471330986}
+  - {fileID: 864642145}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &475349640
 PrefabInstance:
@@ -1607,7 +1609,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6834388546756462349, guid: 3b397e93ad1830440a81c040bcab3f6f, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6834388546756462349, guid: 3b397e93ad1830440a81c040bcab3f6f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3075,14 +3077,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864642143}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.23300798, y: -0.59630334, z: 0.12349295}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.9747227, y: -0.72440827, z: 0.039869584}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 953664454}
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 471581436}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &868640965
 GameObject:
@@ -4122,16 +4124,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397464252}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.023094395, y: 0.14757715, z: -4.825915}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.1846364, y: 0.019472227, z: -4.9095383}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 373424912}
   - {fileID: 476426916}
   - {fileID: 805914441}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 471581436}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1421453203
 GameObject:
@@ -5496,7 +5498,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1915524895
 GameObject:
@@ -6034,6 +6036,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8992110863148034397}
     m_Modifications:
+    - target: {fileID: 1124247889, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
+      propertyPath: m_fontSize
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124247889, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 991e7e1fe8aea4746b3469fda2b8a9d9, type: 2}
+    - target: {fileID: 1124247889, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -796335351332680183, guid: 991e7e1fe8aea4746b3469fda2b8a9d9, type: 2}
+    - target: {fileID: 1124247889, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124247890, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -796335351332680183, guid: 991e7e1fe8aea4746b3469fda2b8a9d9, type: 2}
+    - target: {fileID: 1124247891, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124247891, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124247891, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -5.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8038232432336016220, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
       propertyPath: m_Name
       value: CardSolts
@@ -6157,7 +6191,7 @@ Transform:
   - {fileID: 137391329}
   - {fileID: 1014646318}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5322095764789407373
 GameObject:
@@ -6478,6 +6512,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8992110863148034397}
     m_Modifications:
+    - target: {fileID: 1124247889, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 991e7e1fe8aea4746b3469fda2b8a9d9, type: 2}
+    - target: {fileID: 1124247889, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8038232432336016220, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
       propertyPath: m_Name
       value: CardSolts (4)
@@ -6593,7 +6635,7 @@ Transform:
   - {fileID: 8719408463574597773}
   - {fileID: 8992110864622481613}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8992110863148034466
 GameObject:
@@ -6611,7 +6653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &8992110863340663912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6634,8 +6676,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 991e7e1fe8aea4746b3469fda2b8a9d9, type: 2}
+  m_sharedMaterial: {fileID: -796335351332680183, guid: 991e7e1fe8aea4746b3469fda2b8a9d9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6724,7 +6766,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: -796335351332680183, guid: 991e7e1fe8aea4746b3469fda2b8a9d9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6814,7 +6856,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8992110863600131453
 MonoBehaviour:
@@ -6841,6 +6883,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8992110863148034397}
     m_Modifications:
+    - target: {fileID: 1124247889, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 991e7e1fe8aea4746b3469fda2b8a9d9, type: 2}
+    - target: {fileID: 1124247889, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8038232432336016220, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
       propertyPath: m_Name
       value: CardSolts (3)
@@ -6982,7 +7032,7 @@ Transform:
   m_Children:
   - {fileID: 8992110863340663919}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8992110864114455961
 PrefabInstance:
@@ -6991,6 +7041,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8992110863148034397}
     m_Modifications:
+    - target: {fileID: 1124247889, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 991e7e1fe8aea4746b3469fda2b8a9d9, type: 2}
+    - target: {fileID: 1124247889, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8038232432336016220, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
       propertyPath: m_Name
       value: CardSolts (2)
@@ -7177,6 +7235,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8992110863148034397}
     m_Modifications:
+    - target: {fileID: 1124247889, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 991e7e1fe8aea4746b3469fda2b8a9d9, type: 2}
+    - target: {fileID: 1124247889, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8038232432336016220, guid: 5bf9afb66cf268745b84fee41ffd35b9, type: 3}
       propertyPath: m_Name
       value: CardSolts (1)
