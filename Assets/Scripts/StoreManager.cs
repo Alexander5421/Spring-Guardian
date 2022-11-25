@@ -7,6 +7,7 @@ using UnityEngine;
 public class StoreManager : MonoBehaviour
 {
     [Serializable]
+    [Tooltip("The list of all the possible sellable items in the store")]
     public class CardPool
     {
         public int[] cardPool;
@@ -16,11 +17,43 @@ public class StoreManager : MonoBehaviour
     public int level;
     public int[] levelCost;
     public Sprite[] carSprites;
+    public string[] cardNames;
     public CardPool[] cardPool;
-    public StoreCard[] currentSellCard;
+    public StoreCard storeCardPrefab;
+    public StoreCard[] currentSellCard = new StoreCard[5];
     public bool[] isCardFreeze = new bool[5];
     public spriteButton refreshButton;
     public PlayerData playerData;
+    public float width;
+    public float padding;
+
+
+    [ContextMenu("Create Store Slots")]
+    private void InitializeCards()
+    {
+        // instantiate five storeCard objects based on prefab, with padding
+        // use the prefab's position as the starting point for the first card
+        // for the following card positions, use the previous card's position plus the width of the card plus padding
+        
+        
+        Vector3 cardPosition = storeCardPrefab.transform.position;
+        for (int i = 0; i < currentSellCard.Length; i++)
+        {
+            // handle scale and position
+            currentSellCard[i] = Instantiate(storeCardPrefab, transform);
+            currentSellCard[i].gameObject.SetActive(true);
+            currentSellCard[i].transform.position = cardPosition;
+            currentSellCard[i].name = "Store Card " + i;
+            cardPosition.x += width + padding;
+        }
+        
+
+    }
+
+    private void Start()
+    {
+        InitializeCards();
+    }
 
     private void OnEnable()
     {
@@ -42,8 +75,9 @@ public class StoreManager : MonoBehaviour
             }
             int randomIndex = UnityEngine.Random.Range(0, cardPool[level].cardPool.Length);
             currentSellCard[i].towerType = cardPool[level].cardPool[randomIndex];
-            currentSellCard[i].spriteRenderer.sprite = carSprites[cardPool[level].cardPool[randomIndex]];
+            currentSellCard[i].cardPoster.sprite = carSprites[cardPool[level].cardPool[randomIndex]];
             currentSellCard[i].price = level * 10+5;
+            currentSellCard[i].nameText.text = cardNames[cardPool[level].cardPool[randomIndex]];
             currentSellCard[i].card.SetActive(true);
             currentSellCard[i].Restore();
         }

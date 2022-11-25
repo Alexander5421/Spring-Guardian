@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public LevelManager levelManager;
     public SpawnManager spawnManager;
+    public StoreManager storeManager;
     public PlayerData playerData;
     public GameObject Store;
     public GameObject Level;

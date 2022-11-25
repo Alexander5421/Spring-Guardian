@@ -6,9 +6,8 @@ using UnityEngine;
 
 public class StoreCard : MonoBehaviour
 {
-    public  StoreManager storeManager;
     public  int towerType;
-    public  Color freezeColor , normalColor;
+    public  Sprite locked , unLocked;
     private bool isFreeze;
     public int price
     {
@@ -19,19 +18,20 @@ public class StoreCard : MonoBehaviour
             priceText.text = _price.ToString();
         }
     }
-    public SpriteRenderer spriteRenderer;
+    public SpriteRenderer cardPoster;
     public int level;
     public TextMeshPro priceText;
+    public TextMeshPro nameText;
     // determine whether the card is sold out
     public GameObject card;
-    public SpriteRenderer freezeButton;
+    public SpriteRenderer lockSprite;
     private int _price;
 
-    public void freeze()
+    public void Freeze()
     {
         isFreeze = !isFreeze;
-        freezeButton.color = isFreeze? freezeColor : normalColor;
-        storeManager.Freeze(this);
+        lockSprite.sprite = isFreeze? locked : unLocked;
+        GameManager.Instance.storeManager.Freeze(this);
     }
 
     public void Restore()
@@ -43,11 +43,11 @@ public class StoreCard : MonoBehaviour
     {
         isFreeze = false;
         card.SetActive(false);
-        freezeButton.color = isFreeze? freezeColor : normalColor;
+        lockSprite.sprite = isFreeze? locked : unLocked;
     }
 
     public void OnCardSellButtonPressed()
     {
-        storeManager.SellCard(this);
+        GameManager.Instance.storeManager.SellCard(this);
     }
 }

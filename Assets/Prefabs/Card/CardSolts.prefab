@@ -129,7 +129,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8038232434135977533}
         m_TargetAssemblyTypeName: StoreCard, Assembly-CSharp
-        m_MethodName: freeze
+        m_MethodName: Freeze
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
