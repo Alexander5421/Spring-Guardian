@@ -13,6 +13,8 @@ public class PlayerData : MonoBehaviour
     int maxTower = 10;
     [SerializeField]
     int money = 0;
+    int health = 10;
+    int maxHealth = 10;
     public  int Money 
     {
         get { return money; }
@@ -23,9 +25,35 @@ public class PlayerData : MonoBehaviour
             moneyText.text = money.ToString();
         }
     }
+    public void RestoreAllHealth()
+    {
+        Health = maxHealth;
+    }
+
+    public int Health
+    {
+        get { return health; }
+        set
+        {
+            health = value;
+            // if health is less than 0, text should be 0
+            if (health < 0)
+            {
+                healthText.text = 0.ToString();
+            }
+            else
+            {
+                
+                healthText.text = health.ToString();
+            }
+            
+        }
+    }
+    
     // the tower that is in player hand
     public List<int> towerList = new List<int>();
     public TextMeshPro moneyText;
+    public TextMeshPro healthText;
     public playerHand playerHand;
     public bool[] towerInHand = new bool[10];
     public buildSlot[] buildSlots;
@@ -102,7 +130,7 @@ public class PlayerData : MonoBehaviour
         DisableBuild();
         
         // instantiate the tower
-        var tower =Instantiate(GameManager.Instance.towerPrefabs[towerList[index]], currentSlot.transform.position, Quaternion.identity);
+        var tower =Instantiate(GameData.Instance.towerPrefabs[towerList[index]], currentSlot.transform.position, Quaternion.identity);
         tower.transform.parent = currentSlot.transform;
         currentSlot.spriteRenderer.sprite = null;
     }

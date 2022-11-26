@@ -46,11 +46,13 @@ public class StoreManager : MonoBehaviour
             currentSellCard[i].name = "Store Card " + i;
             cardPosition.x += width + padding;
         }
+        // disable the prefab
+        storeCardPrefab.gameObject.SetActive(false);
         
 
     }
 
-    private void Start()
+    private void Awake()
     {
         InitializeCards();
     }
@@ -120,6 +122,11 @@ public class StoreManager : MonoBehaviour
             storeCard.Sell();
             isCardFreeze[Array.IndexOf(currentSellCard, storeCard)] = false;
         }
+    }
+    
+    public void LeaveStore()
+    {
+        GameData.Instance.gameManager.NewLevelStart();
     }
     
 }

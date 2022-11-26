@@ -13,6 +13,13 @@ public class playerHand : MonoBehaviour
     [ContextMenu("createSlots")]
     private void CreateSlots()
     {
+        
+        // remove all the slots
+        foreach (var item in cards)
+        {
+            Destroy(item.gameObject);
+        }
+        cards.Clear();
         // add ten cards to the transform from left to right and no gap between them the size of the card is 3.125
         for (int i = 0; i < 10; i++)
         {
@@ -71,7 +78,7 @@ public class playerHand : MonoBehaviour
         {
             return;
         }
-        cards[index].renderer.color = new Color(1, 1, 1, 0.5f);
+        cards[index].cardRenderer.color = new Color(1, 1, 1, 0.5f);
         
     }
     
@@ -83,6 +90,6 @@ public class playerHand : MonoBehaviour
         {
             return;
         }
-        cards[index].renderer.color = new Color(1, 1, 1, 1);
+        cards[index].cardRenderer.color = new Color(1, 1, 1, 1);
     }
 }

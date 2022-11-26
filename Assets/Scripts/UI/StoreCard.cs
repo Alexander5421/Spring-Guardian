@@ -31,7 +31,10 @@ public class StoreCard : MonoBehaviour
     {
         isFreeze = !isFreeze;
         lockSprite.sprite = isFreeze? locked : unLocked;
-        GameManager.Instance.storeManager.Freeze(this);
+        // change the transparency of the lock sprite
+        lockSprite.color = isFreeze? new Color(1,1,1,1) : new Color(1,1,1,0.25f);
+        
+        GameData.Instance.storeManager.Freeze(this);
     }
 
     public void Restore()
@@ -44,10 +47,11 @@ public class StoreCard : MonoBehaviour
         isFreeze = false;
         card.SetActive(false);
         lockSprite.sprite = isFreeze? locked : unLocked;
+        lockSprite.color = isFreeze? new Color(1,1,1,1) : new Color(1,1,1,0.5f);
     }
 
     public void OnCardSellButtonPressed()
     {
-        GameManager.Instance.storeManager.SellCard(this);
+        GameData.Instance.storeManager.SellCard(this);
     }
 }

@@ -35,6 +35,12 @@ public class Spawner:MonoBehaviour
             Debug.LogError("Spawn interval array length must be greater than 0!");
             return;
         }
+
+    }
+
+    public void Restart()
+    {
+        enabled = true;
         timer = spawnInterval[0];
         index = 0;
     }

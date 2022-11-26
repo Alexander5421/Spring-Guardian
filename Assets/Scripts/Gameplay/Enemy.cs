@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
             // log
             OnDeath?.Invoke(this);
             OnQuit?.Invoke(this);
-            GameManager.Instance.playerData.Money += reward;
+            GameData.Instance.playerData.Money += reward;
             Destroy(gameObject);
             Debug.Log($"{gameObject.name} has died");
 

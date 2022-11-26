@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    private int playerHealth = 10;
     public CapturePoint capturePoint;
     private void Start()
     {
@@ -12,12 +11,11 @@ public class LevelManager : MonoBehaviour
 
     private void PlayerReceiveDmg(int dmg)
     {
-        playerHealth -= dmg;
-        Debug.Log($"Player Health Update: {playerHealth}");
-        if (playerHealth <= 0)
+        GameData.Instance.playerData.Health -= dmg;
+        Debug.Log($"Player Health Update: {GameData.Instance.playerData.Health}");
+        if (GameData.Instance.playerData.Health <= 0)
         {
-            Debug.Log("Game Over");
-            
+            GameData.Instance.gameManager.GameEnd(false);
         }
     }
 }

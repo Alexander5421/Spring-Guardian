@@ -122,9 +122,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 0}
-  speed: 2
+  speed: 5
   point: 1
   healthBar: {fileID: 4940989540883630270}
+  reward: 10
   MaxHealth: 5
 --- !u!61 &5064794377789532994
 BoxCollider2D:
