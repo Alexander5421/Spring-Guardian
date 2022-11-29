@@ -17,7 +17,8 @@ public class SpawnManager : MonoBehaviour
     public List<Enemy> existingEnemies = new List<Enemy>();
     
     public List<Spawners> waveSpawners = new List<Spawners>();
-    
+
+    private int spawnIndex = 0;
     [Serializable]
     public class Spawners
     {
@@ -33,6 +34,7 @@ public class SpawnManager : MonoBehaviour
         Enemy enemyPrefab = enemyPrefabs[enemyIndex];
         GameObject enemyObject = Instantiate(enemyPrefab.gameObject, transform, true);
         enemyObject.transform.position = paths[pathIndex].path.GetPointAtDistance(0);
+        enemyObject.name = enemyPrefab.name+"_"+spawnIndex++; 
         Enemy enemyScript = enemyObject.GetComponent<Enemy>();
         existingEnemies.Add(enemyScript);
         enemyScript.OnQuit += EnemyQuit;
@@ -43,9 +45,11 @@ public class SpawnManager : MonoBehaviour
     private void EnemyQuit(Enemy enemy)
     {
         existingEnemies.Remove(enemy);
+        // print ("Caller: "+enemy.name + $"enemy Left Number{ existingEnemies.Count}");
         // check whether the wave is over
         if (IsWaveOver())
         {
+            // print(currentWave);
             // check whether there is no more wave
             if (currentWave == waveSpawners.Count - 1)
             {
@@ -54,6 +58,10 @@ public class SpawnManager : MonoBehaviour
             // go to store
             else
             {
+                // if (GameData.Instance.gameManager.gameState == GameState.Store)
+                // {
+                //     return;
+                // }
                 currentWave++;
                 GameData.Instance.gameManager.StoreStart();
             }
@@ -84,7 +92,16 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-
+    public void ResetWave()
+    {
+        currentWave = 0;
+        foreach (Enemy enemy in existingEnemies)
+        {
+            Destroy(enemy.gameObject);
+        }
+        existingEnemies.Clear();
+    }
+    
 
     
 

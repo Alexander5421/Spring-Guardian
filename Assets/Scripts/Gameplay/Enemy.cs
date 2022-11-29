@@ -14,12 +14,16 @@ public class Enemy : MonoBehaviour
     public int point = 1;
     
     public HealthBar healthBar;
+
+    public Animator animator;
     
     public int reward = 10;
 
     private int health =1;
     
     public int MaxHealth = 100;
+    
+    private bool isDead = false;
     
     // event OnDeath
     public event Action<Enemy> OnDeath;
@@ -28,6 +32,7 @@ public class Enemy : MonoBehaviour
     public event Action<Enemy> OnQuit;
 
     private float distanceSofar = 0;
+    private static readonly int IsDie = Animator.StringToHash("IsDie");
 
     public float Progress
     {
@@ -41,6 +46,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError($"{gameObject.name} does not have a path to follow");
         }
+        animator = GetComponent<Animator>();
         health = MaxHealth;
     }
     
@@ -49,16 +55,24 @@ public class Enemy : MonoBehaviour
         health -= damage;
         // update health bar
         healthBar.healthRatio = (float) health / MaxHealth;
+        
         if (health <= 0)
         {
             // log
+            healthBar.healthRatio = 0;
             OnDeath?.Invoke(this);
             OnQuit?.Invoke(this);
             GameData.Instance.playerData.Money += reward;
-            Destroy(gameObject);
-            Debug.Log($"{gameObject.name} has died");
+            animator.SetBool(IsDie, true);
+            isDead = true;
+            // Destroy the enemy after the animation is finished
 
         }
+    }
+    // will call by animation event
+    public void OnDeathFinish()
+    {
+        Destroy(gameObject, 0.5f);
     }
 
     public void ReachEnd()
@@ -69,6 +83,10 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDead)
+        {
+            return;
+        }
         distanceSofar += speed * Time.fixedDeltaTime;
         transform.position = pathCreator.path.GetPointAtDistance(distanceSofar,EndOfPathInstruction.Stop);
     }

@@ -38,7 +38,7 @@ public class playerHand : MonoBehaviour
         }
         Refresh();
     }
-
+// call when the towerList is changed
     public void Refresh()
     {
         for (int i = 0; i < cards.Count; i++)

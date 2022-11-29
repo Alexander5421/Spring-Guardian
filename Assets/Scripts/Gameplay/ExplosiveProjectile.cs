@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 class ExplosiveProjectile : Projectile
@@ -15,9 +16,9 @@ class ExplosiveProjectile : Projectile
             // hit target
             
             // hit nearby enemies
-            //TODO this is expensive, should be changed. 
             //TODO maintain a list of enemies in the scene and check against that instead.
-            var enemies = FindObjectsOfType<Enemy>();
+            // hardcopy
+            var enemies = new List<Enemy>(GameData.Instance.spawnManager.existingEnemies);
             foreach (var enemy in enemies)
             {
                 if (Vector3.Distance(transform.position, enemy.transform.position) < range)

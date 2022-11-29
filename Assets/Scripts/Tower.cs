@@ -14,6 +14,7 @@ public class Tower : MonoBehaviour
     public float coolDownTimer = 0f;
     public Projectile projectilePrefab;
     public Transform firePoint;
+    public float buildCooldown = 5f;
 
     public void FixedUpdate()
     {
@@ -62,7 +63,7 @@ public class Tower : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             potentialTargets.Add(other.GetComponent<Enemy>());
-            other.gameObject.GetComponent<Enemy>().OnDeath+= RemoveTarget;
+            other.gameObject.GetComponent<Enemy>().OnQuit+= RemoveTarget;
         }
         
        
@@ -70,7 +71,6 @@ public class Tower : MonoBehaviour
 
     private void RemoveTarget(Enemy target)
     {
-        Debug.Log("Removing target");
         // test if the target is in the list
         if (potentialTargets.Contains(target))
         {
@@ -84,7 +84,7 @@ public class Tower : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             potentialTargets.Remove(other.GetComponent<Enemy>());
-            other.gameObject.GetComponent<Enemy>().OnDeath-= RemoveTarget;
+            other.gameObject.GetComponent<Enemy>().OnQuit-= RemoveTarget;
         }
     }
 }

@@ -58,6 +58,21 @@ public class PlayerData : MonoBehaviour
     public bool[] towerInHand = new bool[10];
     public buildSlot[] buildSlots;
     private buildSlot currentSlot;
+
+    public void ResetPlayerData()
+    {
+        Money = 0;
+        Health = 10;
+        maxHealth = 10;
+        towerList.Clear();
+        playerHand.Refresh();
+        for (int i = 0; i < towerInHand.Length; i++)
+        {
+            towerInHand[i] = false;
+        }
+
+    }
+    
     [ContextMenu("AddMoney")]
     private void AddMoney()
     {
@@ -126,19 +141,62 @@ public class PlayerData : MonoBehaviour
         }
         // set the tower in hand to false
         towerInHand[index] = false;
+        currentSlot.handIndex = index;
         playerHand.FadeCard(index);
         DisableBuild();
         
         // instantiate the tower
-        var tower =Instantiate(GameData.Instance.towerPrefabs[towerList[index]], currentSlot.transform.position, Quaternion.identity);
+        Tower tower =Instantiate(GameData.Instance.towerPrefabs[towerList[index]], currentSlot.transform.position, Quaternion.identity);
+        // make the tower local postion z 0.1
+        tower.transform.localPosition += Vector3.forward*0.1f; 
+        currentSlot.currentTower = tower;
         tower.transform.parent = currentSlot.transform;
-        currentSlot.spriteRenderer.sprite = null;
+        currentSlot.HaveTower(true);
+    }
+
+    public void RemoveTower(buildSlot slot)
+    {
+        if (slot.currentTower==null)
+        {
+            return;
+        }
+        // set the tower into cooldown mode
+        // return to player hand
+        towerInHand[slot.handIndex] = true;
+        playerHand.cards[slot.handIndex].IntoCoolDown(slot.currentTower.buildCooldown);
+        Destroy(slot.currentTower.gameObject);
+        slot.currentTower = null;
+        slot.HaveTower(false);
+        playerHand.RestoreCard(slot.handIndex);
     }
     
     // 
     public void EnableBuild( buildSlot slot){
+        if (slot.currentTower!=null)
+        {
+            return;
+        }
         currentSlot = slot;
         playerHand.gameObject.SetActive(true);
+    }
+    // active when player click the right mouse button
+
+    private void Update()
+    {
+        // first check whether the player is building
+        if (currentSlot != null)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                DisableBuild();
+            }
+        }
+    }
+
+    public void CancelBuild()
+    {
+        currentSlot = null;
+        playerHand.gameObject.SetActive(false);
     }
     
     public void DisableBuild(){
