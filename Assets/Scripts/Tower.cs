@@ -5,11 +5,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 //TODO: flip the tower if the enemy is on the other side of the tower (if the enemy is on the left side of the tower, flip the tower to the left)
+[RequireComponent(typeof(CircleCollider2D))]
 public class Tower : MonoBehaviour
 {
     public List<Enemy> potentialTargets = new List<Enemy>();
     public CircleCollider2D rangeCollider;
-    
+    public Animator animator;
     public float coolDown = 1f;
     public float coolDownTimer = 0f;
     public Projectile projectilePrefab;
@@ -26,10 +27,11 @@ public class Tower : MonoBehaviour
         // if there are no targets, do nothing
         if (potentialTargets.Count == 0)
         {
+            animator.SetBool("IsAttack",false);
             return;
         }
         // if the cooldown timer is not 0, reduce it by the time since the last frame
-        
+        animator.SetBool("IsAttack",true);
         // if the cooldown timer is 0, shoot a projectile at the the target has the largest progress
         if (coolDownTimer <= 0)
         {
