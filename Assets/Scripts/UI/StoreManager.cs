@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StoreManager : MonoBehaviour
 {
@@ -26,6 +28,8 @@ public class StoreManager : MonoBehaviour
     public PlayerData playerData;
     public float width;
     public float padding;
+    public int refreshCost;
+    public TextMeshPro refreshCostText, levelCostText;
 
 
     [ContextMenu("Create Store Slots")]
@@ -59,6 +63,8 @@ public class StoreManager : MonoBehaviour
 
     private void OnEnable()
     {
+        refreshCostText.text = refreshCost.ToString();
+        levelCostText.text = levelCost[level].ToString();
         Refresh();
     }
     
@@ -86,6 +92,18 @@ public class StoreManager : MonoBehaviour
         
     }
 
+    public void ForceRefresh()
+    {
+        // cost refreshCost coins to refresh the store
+        // if the player has enough coins, refresh the store and deduct the coins
+        // if the player doesn't have enough coins, do nothing
+        if (playerData.Money >= refreshCost)
+        {
+            playerData.Money -= refreshCost;
+            Refresh();
+        }
+    }
+
     public void Freeze(StoreCard storeCard)
     {
         // freeze the card
@@ -103,10 +121,17 @@ public class StoreManager : MonoBehaviour
     {
         if (level<cardPool.Length-1)
         {
-            level++;
-            // update the storeLevelIndicator
-            // the sprite file is star_old_blight_+level
-            storeLevelIndicator.sprite = storeLevelSprites[level];
+            // if the player has enough money, upgrade the level
+
+            if (playerData.Money >= levelCost[level])
+            {
+                playerData.Money -= levelCost[level];
+                level++;
+                storeLevelIndicator.sprite = storeLevelSprites[level];
+                levelCostText.text = levelCost[level].ToString();
+
+            }
+
         }
     }
 

@@ -208,7 +208,7 @@ MonoBehaviour:
   potentialTargets: []
   rangeCollider: {fileID: 8497499554232507929}
   animator: {fileID: 8090934663865883749}
-  coolDown: 1
+  coolDown: 0.1
   coolDownTimer: 0
   projectilePrefab: {fileID: 1415539140, guid: 8aff5f3f080257e45a0bb330788dd6c1, type: 3}
   firePoint: {fileID: 4327587012312176925}
