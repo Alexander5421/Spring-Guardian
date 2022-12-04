@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject startMenu;
     public GameObject Store;
     public GameObject Level;
     public int waveNumber;
@@ -14,16 +15,49 @@ public class GameManager : MonoBehaviour
     //TODO call after player hit start in the main menu
     private void Start()
     {
-        NewLevelStart();
+        ReturnToMenu();
+    }
+
+    private void StartMenu()
+    {
+        gameState = GameState.Menu;
+        startMenu.SetActive(true);
+    }
+
+    private void Update()
+    {
+        if (gameState == GameState.Menu)
+        {
+            if (Input.anyKeyDown)
+            {
+                startMenu.SetActive(false);
+                NewLevelStart();
+                // if the game is in the menu state
+            }
+        }
+        // if any key is pressed
+        
+    }
+    
+    public void ReturnToMenu()
+    {
+        RestartWithoutIntoNewLevel();
+        StartMenu();
+        Store.SetActive(false);
+        Level.SetActive(false);
     }
 
     public void Restart()
+    {
+        RestartWithoutIntoNewLevel();
+        NewLevelStart();
+    }
+    public void RestartWithoutIntoNewLevel()
     {
         GameData.Instance.spawnManager.ResetWave();
         GameData.Instance.playerData.ResetPlayerData();
         Time.timeScale = 1;
         infoBoard.gameObject.SetActive(false);
-        NewLevelStart();
     }
 
     [ContextMenu("SwitchToLevelMode")]
@@ -47,7 +81,6 @@ public class GameManager : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
         {
-            print(enemy.name);
             Destroy(enemy);
         }
         GameData.Instance.playerData.RemoveAllTower();

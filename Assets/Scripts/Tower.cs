@@ -46,10 +46,12 @@ public class Tower : MonoBehaviour
             }
             // instantiate the projectile at the fire point
             // direction is the vector from the fire point to the target
+            // only the x and y components are used
             var direction = target.transform.position - firePoint.position;
-            // rotation is the angle between the direction and the right vector
-            var rotation = Quaternion.FromToRotation(Vector3.right, direction);
-            Projectile projectile = Instantiate(projectilePrefab, firePoint.position, rotation);
+            direction.z = 0;
+            //set the rotation of the projectile to the direction
+            Projectile projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+            projectile.transform.right = direction;
             projectile.target = target;
                 
         }

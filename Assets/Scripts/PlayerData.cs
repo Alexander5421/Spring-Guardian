@@ -52,6 +52,7 @@ public class PlayerData : MonoBehaviour
     
     // the tower that is in player hand
     public List<int> towerList = new List<int>();
+    public List<int> initialTowerList = new List<int>();
     public TextMeshPro moneyText;
     public TextMeshPro healthText;
     public playerHand playerHand;
@@ -67,11 +68,19 @@ public class PlayerData : MonoBehaviour
         Health = 10;
         maxHealth = 10;
         towerList.Clear();
+        // use the initial tower list to reset the tower list
+        foreach (int tower in initialTowerList)
+        {
+            towerList.Add(tower);
+        }
+        GameData.Instance.playerData.RemoveAllTower();
+        GameData.Instance.playerData.ResetCoolDown();
         playerHand.Refresh();
         for (int i = 0; i < towerInHand.Length; i++)
         {
             towerInHand[i] = false;
         }
+
 
     }
     

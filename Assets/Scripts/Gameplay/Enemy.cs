@@ -22,8 +22,8 @@ public class Enemy : MonoBehaviour
     private int health =1;
     
     public int MaxHealth = 100;
-    
-    private bool isDead = false;
+
+    public bool isDead = false;
     
     // event OnDeath
     public event Action<Enemy> OnDeath;

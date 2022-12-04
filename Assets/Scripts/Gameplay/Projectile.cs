@@ -10,6 +10,11 @@ public class Projectile : MonoBehaviour
     
     public void Start()
     {
+        if (target.isDead)
+        {
+            Destroy(gameObject);
+            return;
+        }
         target.OnDeath += (targetOnOnDeath);
     }
 
