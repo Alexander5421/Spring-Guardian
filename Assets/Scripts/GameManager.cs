@@ -11,6 +11,11 @@ public class GameManager : MonoBehaviour
     public InfoBoard infoBoard;
     public GameState gameState;
 
+    //TODO call after player hit start in the main menu
+    private void Start()
+    {
+        NewLevelStart();
+    }
 
     public void Restart()
     {
@@ -26,7 +31,7 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.InGame;
         // set health to max
-        GameData.Instance.playerData.RestoreAllHealth();
+        GameData.Instance.playerData.NewWave();
         Level.SetActive(true);
         GameData.Instance.spawnManager.NewWaveStart();
         Store.SetActive(false);
@@ -38,11 +43,16 @@ public class GameManager : MonoBehaviour
     public void StoreStart()
     {
         // find all gameobjects with tag "Enemy" and destroy them
+        // some enemies still in death animation,not destoried
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
         {
+            print(enemy.name);
             Destroy(enemy);
         }
+        GameData.Instance.playerData.RemoveAllTower();
+        GameData.Instance.playerData.ResetCoolDown();
+        GameData.Instance.playerData.playerHand.EnableAllButtons();
         gameState = GameState.Store;
         Level.SetActive(false);
         Store.SetActive(true);

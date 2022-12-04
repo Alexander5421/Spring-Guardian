@@ -11,9 +11,6 @@ public class HandSlot : MonoBehaviour
     public int index;
     public CoolDownMask cooldownMask;
     public BoxCollider2D cooldownCollider2D;
-    public float cooldownTime;
-    public float cooldownTimer;
-    public bool isOnCooldown;
     public void SetHandSlot(Sprite preview,int index)
     {
         cardRenderer.sprite = preview;
@@ -21,32 +18,15 @@ public class HandSlot : MonoBehaviour
         this.index = index;
         
     }
-    
-    public void IntoCoolDown(float coolDownTime)
-    {
-        Debug.Log(coolDownTime);
-        cooldownTimer = coolDownTime;
-        this.cooldownTime = coolDownTime;
-        cooldownCollider2D.gameObject.SetActive(true);
-        cooldownMask.gameObject.SetActive(true); 
-        isOnCooldown = true;
-        
-    }
 
-    public void Update()
-    {
-        if (!isOnCooldown) return;
-        cooldownTime -= Time.deltaTime;
-        Debug.Log( cooldownTime);
 
-        cooldownMask.Progress = cooldownTime/ cooldownTimer;
-        if (cooldownTime <= 0)
+    public void Refresh(float cooldownTime,float cooldownTimer,bool isOnCoolDown)
+    {
+        cooldownCollider2D.gameObject.SetActive(isOnCoolDown);
+        cooldownMask.gameObject.SetActive(isOnCoolDown); 
+        if (isOnCoolDown)
         {
-            cooldownTime = 0;
-            isOnCooldown = false;
-            cooldownCollider2D.gameObject.SetActive(false);
-            cooldownMask.gameObject.SetActive(false); 
+            cooldownMask.Progress = cooldownTime/ cooldownTimer;
         }
-
     }
 }

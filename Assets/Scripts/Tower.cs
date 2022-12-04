@@ -15,6 +15,7 @@ public class Tower : MonoBehaviour
     public Projectile projectilePrefab;
     public Transform firePoint;
     public float buildCooldown = 5f;
+    public Transform rangeIndicator;
 
     public void FixedUpdate()
     {
@@ -86,5 +87,22 @@ public class Tower : MonoBehaviour
             potentialTargets.Remove(other.GetComponent<Enemy>());
             other.gameObject.GetComponent<Enemy>().OnQuit-= RemoveTarget;
         }
+    }
+
+    public void ShowRange()
+    {
+        if (rangeIndicator==null)
+        {
+            Debug.LogWarning($"{gameObject.name} has not assigned a indicator");
+        }
+
+        var radius = rangeCollider.radius;
+        rangeIndicator.transform.localScale = new Vector3(radius * 2, radius * 2, 1f);
+        rangeIndicator.gameObject.SetActive(true);
+    }
+    
+    public void HideRange()
+    {
+        rangeIndicator.gameObject.SetActive(false);
     }
 }

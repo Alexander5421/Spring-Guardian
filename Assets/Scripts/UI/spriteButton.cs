@@ -13,14 +13,17 @@ public class spriteButton : MonoBehaviour
     {
         OnClick.AddListener(action);
     }
-    
 
-    public void OnMouseOver () {
-        if(Input.GetMouseButtonDown(0)){
+
+    public void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
             OnClick?.Invoke();
         }
-        
-        if(Input.GetMouseButtonDown(1)){
+
+        if (Input.GetMouseButtonDown(1))
+        {
             //do stuff here
             OnRightClick?.Invoke();
         }

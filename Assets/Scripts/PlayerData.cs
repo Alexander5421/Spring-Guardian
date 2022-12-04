@@ -25,7 +25,7 @@ public class PlayerData : MonoBehaviour
             moneyText.text = money.ToString();
         }
     }
-    public void RestoreAllHealth()
+    private void RestoreAllHealth()
     {
         Health = maxHealth;
     }
@@ -55,6 +55,7 @@ public class PlayerData : MonoBehaviour
     public TextMeshPro moneyText;
     public TextMeshPro healthText;
     public playerHand playerHand;
+    public CoolDown[] coolDownList = new CoolDown[10];
     public bool[] towerInHand = new bool[10];
     public buildSlot[] buildSlots;
     private buildSlot currentSlot;
@@ -62,6 +63,7 @@ public class PlayerData : MonoBehaviour
     public void ResetPlayerData()
     {
         Money = 0;
+        // TODO should link to the prefab 
         Health = 10;
         maxHealth = 10;
         towerList.Clear();
@@ -79,12 +81,13 @@ public class PlayerData : MonoBehaviour
         Money += 100;
         
     }
-    
-    public void MoneyChange(int value)
-    {
-        Money += value;
-    }
-    
+
+
+
+    #region Action_in_store
+    /*
+     * Add tower to player hand, called when player buy something in store 
+     */
     public void AddTower(int towerID)
     {
         towerList.Add(towerID);
@@ -109,22 +112,28 @@ public class PlayerData : MonoBehaviour
          towerList.RemoveAt(slot.index);
          playerHand.Refresh();
     }
+    #endregion
 
-    public void Start()
-    {
-        NewWave();
-    }
 
     public void NewWave()
     {
-        // set the tower in hand to true
+        RestoreAllHealth();
+        // return all the card to hand
         for (int i = 0; i < towerInHand.Length; i++)
         {
             towerInHand[i] = true;
         }
-        // player cannot delete tower in hand
+        // player cannot delete tower in hand in wave
         playerHand.DisableAllButtons();
+        // reset the cooldown of all towers
+        foreach (CoolDown coolDown in coolDownList)
+        {
+            coolDown.isCoolingDown = false;
+        }
+        
     }
+
+    #region Action_in_wave
 
     public void UseTower(HandSlot slot)
     {
@@ -163,33 +172,98 @@ public class PlayerData : MonoBehaviour
         // set the tower into cooldown mode
         // return to player hand
         towerInHand[slot.handIndex] = true;
-        playerHand.cards[slot.handIndex].IntoCoolDown(slot.currentTower.buildCooldown);
+        coolDownList[slot.handIndex].SetCoolDown(slot.currentTower.buildCooldown);
         Destroy(slot.currentTower.gameObject);
         slot.currentTower = null;
         slot.HaveTower(false);
         playerHand.RestoreCard(slot.handIndex);
     }
-    
-    // 
-    public void EnableBuild( buildSlot slot){
-        if (slot.currentTower!=null)
+
+    private void RemoveTowerWithoutCooldown(buildSlot slot)
+    {
+        if (slot.currentTower==null)
         {
             return;
         }
-        currentSlot = slot;
-        playerHand.gameObject.SetActive(true);
+        // set the tower into cooldown mode
+        // return to player hand
+        towerInHand[slot.handIndex] = true;
+        Destroy(slot.currentTower.gameObject);
+        slot.currentTower = null;
+        slot.HaveTower(false);
+        playerHand.RestoreCard(slot.handIndex);
     }
-    // active when player click the right mouse button
 
+    public void RemoveAllTower()
+    {
+        foreach (buildSlot slot in buildSlots)
+        {
+            RemoveTowerWithoutCooldown(slot);   
+        }
+    }
+
+    // active player hand when player click a build slot
+    public void OnBuildSlotClick( buildSlot slot){
+        if (slot.currentTower!=null)
+        {
+            return;
+            // slot.currentTower.ShowRange();
+        }
+        else
+        {
+            currentSlot = slot;
+            playerHand.gameObject.SetActive(true);
+        }
+    }
+    #endregion
+
+    private void Awake()
+    {
+        //initialize the cooldown list
+        for (int i = 0; i < coolDownList.Length; i++)
+        {
+            coolDownList[i] = new CoolDown();
+        }
+        
+        // buildSlot get all component of buildSlot in the scene
+        buildSlots = FindObjectsOfType<buildSlot>();
+    }
+
+    // active when player click the right mouse button
     private void Update()
     {
         // first check whether the player is building
-        if (currentSlot != null)
+        
+        if (GameData.Instance.gameManager.gameState==GameState.InGame && currentSlot != null)
         {
             if (Input.GetMouseButtonDown(1))
             {
                 DisableBuild();
             }
+        }
+        
+        // cool down
+        foreach (CoolDown coolDown in coolDownList)
+        {
+            coolDown.Update(Time.deltaTime);
+        }
+        foreach (HandSlot card in playerHand.cards)
+        {
+            if (card.index >= towerList.Count)
+            {
+                continue;
+            }
+            CoolDown coolDown = coolDownList[card.index];
+            card.Refresh(coolDown.coolDownTime,coolDown.coolDownTimer,coolDown.isCoolingDown);
+        }
+    }
+    
+    // reset all the cooldown
+    public void ResetCoolDown()
+    {
+        foreach (CoolDown coolDown in coolDownList)
+        {
+            coolDown.isCoolingDown = false;
         }
     }
 
