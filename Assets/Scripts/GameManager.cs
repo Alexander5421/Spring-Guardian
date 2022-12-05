@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,15 +12,23 @@ public class GameManager : MonoBehaviour
     public Color StoreColor, LevelColor;
     public InfoBoard infoBoard;
     public GameState gameState;
+    public GameObject UI_heart;
+    public GameObject UI_money;
 
     //TODO call after player hit start in the main menu
     private void Start()
     {
-        ReturnToMenu();
+        RestartWithoutIntoNewLevel();
+        StartMenu();
+        Store.SetActive(false);
+        Level.SetActive(false);
+        UI_heart.SetActive(false);
+        UI_money.SetActive(false);
     }
 
     private void StartMenu()
     {
+        Debug.Log("hello");
         gameState = GameState.Menu;
         startMenu.SetActive(true);
     }
@@ -31,6 +40,8 @@ public class GameManager : MonoBehaviour
             if (Input.anyKeyDown)
             {
                 startMenu.SetActive(false);
+                UI_heart.SetActive(true);
+                UI_money.SetActive(true);
                 NewLevelStart();
                 // if the game is in the menu state
             }
@@ -41,10 +52,7 @@ public class GameManager : MonoBehaviour
     
     public void ReturnToMenu()
     {
-        RestartWithoutIntoNewLevel();
-        StartMenu();
-        Store.SetActive(false);
-        Level.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Restart()
@@ -58,6 +66,7 @@ public class GameManager : MonoBehaviour
         GameData.Instance.playerData.ResetPlayerData();
         Time.timeScale = 1;
         infoBoard.gameObject.SetActive(false);
+
     }
 
     [ContextMenu("SwitchToLevelMode")]

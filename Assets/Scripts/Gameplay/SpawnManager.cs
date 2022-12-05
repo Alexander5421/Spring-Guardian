@@ -53,7 +53,9 @@ public class SpawnManager : MonoBehaviour
             // check whether there is no more wave
             if (currentWave == waveSpawners.Count - 1)
             {
-                GameData.Instance.gameManager.GameEnd(true);
+                if (GameData.Instance.playerData.Health > 0){
+                    GameData.Instance.gameManager.GameEnd(true);
+                }
             }
             // go to store
             else

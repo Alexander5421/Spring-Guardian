@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5064794377789532994}
   - component: {fileID: 3559142042990581622}
   m_Layer: 0
-  m_Name: Skeletal Warrior
+  m_Name: HighSpeedSkeletal Warrior 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,11 +122,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 0}
-  speed: 0.5
+  speed: 1.5
   point: 2
   healthBar: {fileID: 4940989540883630270}
   animator: {fileID: 0}
-  reward: 15
+  reward: 20
   MaxHealth: 15
   isDead: 0
 --- !u!61 &5064794377789532994

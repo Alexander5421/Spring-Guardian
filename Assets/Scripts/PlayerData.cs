@@ -13,8 +13,8 @@ public class PlayerData : MonoBehaviour
     int maxTower = 10;
     [SerializeField]
     int money = 0;
-    int health = 10;
-    int maxHealth = 10;
+    int health = 100;
+    int maxHealth = 100;
     public  int Money 
     {
         get { return money; }
@@ -65,8 +65,8 @@ public class PlayerData : MonoBehaviour
     {
         Money = 0;
         // TODO should link to the prefab 
-        Health = 10;
-        maxHealth = 10;
+        Health = 100;
+        maxHealth = 100;
         towerList.Clear();
         // use the initial tower list to reset the tower list
         foreach (int tower in initialTowerList)
