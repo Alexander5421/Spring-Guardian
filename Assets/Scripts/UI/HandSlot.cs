@@ -7,7 +7,7 @@ public class HandSlot : MonoBehaviour
 {
     public SpriteRenderer cardRenderer;
     public GameObject foreGround;
-    public spriteButton deleteButton;
+    public SlotButton deleteButton;
     public int index;
     public CoolDownMask cooldownMask;
     public BoxCollider2D cooldownCollider2D;

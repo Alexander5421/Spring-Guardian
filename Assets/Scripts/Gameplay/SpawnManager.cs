@@ -66,6 +66,7 @@ public class SpawnManager : MonoBehaviour
                 // }
                 currentWave++;
                 GameData.Instance.gameManager.StoreStart();
+                
             }
         }
     }

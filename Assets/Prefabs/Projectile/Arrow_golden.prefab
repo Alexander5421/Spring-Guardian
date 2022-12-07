@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7345545157521472054}
   - component: {fileID: 1415539140}
   m_Layer: 0
-  m_Name: Arrow
+  m_Name: Arrow_golden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,6 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3903c71c8504c179f183f93ee23d0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 2
+  dmg: 8
   target: {fileID: 0}
-  speed: 5
+  speed: 8

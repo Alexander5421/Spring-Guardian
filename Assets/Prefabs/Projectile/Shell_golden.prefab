@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7345545157521472055}
   - component: {fileID: 7345545157521472054}
-  - component: {fileID: 1415539140}
+  - component: {fileID: -6617422018920836718}
   m_Layer: 0
-  m_Name: Arrow
+  m_Name: Shell_golden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,18 +74,18 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: fbbfab8b899f93e4eb3c6faa1ae59d58, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6f108d7db5840d746bc206528c7f90a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.48, y: 0.48}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1415539140
+--- !u!114 &-6617422018920836718
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,9 +94,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7345545157521472053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3903c71c8504c179f183f93ee23d0a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 11fabdde66674d939516a9d399abcfc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 2
+  dmg: 5
   target: {fileID: 0}
-  speed: 5
+  speed: 4
+  range: 2
+  aoeCoeff: 2

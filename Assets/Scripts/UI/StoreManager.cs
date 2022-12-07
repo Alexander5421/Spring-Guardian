@@ -30,6 +30,8 @@ public class StoreManager : MonoBehaviour
     public float padding;
     public int refreshCost;
     public TextMeshPro refreshCostText, levelCostText;
+    public int[] cardCost;
+    public GameObject blanket;
 
 
     [ContextMenu("Create Store Slots")]
@@ -41,7 +43,7 @@ public class StoreManager : MonoBehaviour
         
         
         Vector3 cardPosition = storeCardPrefab.transform.position;
-        for (int i = 0; i < currentSellCard.Length; i++)
+        for (int i = 0; i < 5; i++)
         {
             // handle scale and position
             currentSellCard[i] = Instantiate(storeCardPrefab, transform);
@@ -58,6 +60,7 @@ public class StoreManager : MonoBehaviour
 
     private void Awake()
     {
+        
         InitializeCards();
     }
 
@@ -74,8 +77,8 @@ public class StoreManager : MonoBehaviour
     {
         // randomly pick 5 card from cardPool and put them into currentSellCard;
         // if the card is freeze, skip it and pick another one
-        
-        for (int i=0;i<5;i++)
+        int amount = level + 2;
+        for (int i=0;i<amount;i++)
         {
             if (isCardFreeze[i])
             {
@@ -84,7 +87,7 @@ public class StoreManager : MonoBehaviour
             int randomIndex = UnityEngine.Random.Range(0, cardPool[level].cardPool.Length);
             currentSellCard[i].towerType = cardPool[level].cardPool[randomIndex];
             currentSellCard[i].cardPoster.sprite = carSprites[cardPool[level].cardPool[randomIndex]];
-            currentSellCard[i].price = level * 10+5;
+            currentSellCard[i].price = cardCost[randomIndex];
             currentSellCard[i].nameText.text = cardNames[cardPool[level].cardPool[randomIndex]];
             currentSellCard[i].card.SetActive(true);
             currentSellCard[i].Restore();
@@ -152,6 +155,7 @@ public class StoreManager : MonoBehaviour
     public void LeaveStore()
     {
         GameData.Instance.gameManager.NewLevelStart();
+        blanket.gameObject.SetActive(true);
     }
     
 }

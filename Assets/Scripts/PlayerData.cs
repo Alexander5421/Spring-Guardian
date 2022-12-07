@@ -143,9 +143,13 @@ public class PlayerData : MonoBehaviour
     }
 
     #region Action_in_wave
-
+    public StoreManager store;
     public void UseTower(HandSlot slot)
     {
+        
+        if (store.gameObject.activeSelf){
+            return;
+        }
         int index = slot.index;
         // test whether index is in the range of towerList
         if (index >= towerList.Count)

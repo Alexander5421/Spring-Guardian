@@ -49,6 +49,12 @@ public class Tower : MonoBehaviour
             // only the x and y components are used
             var direction = target.transform.position - firePoint.position;
             direction.z = 0;
+            if (direction.x <= 0){
+                animator.SetBool("IsRight", false);
+            }
+            if (direction.x > 0){
+                animator.SetBool("IsRight", true);
+            }
             //set the rotation of the projectile to the direction
             Projectile projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
             projectile.transform.right = direction;

@@ -135,11 +135,11 @@ MonoBehaviour:
   potentialTargets: []
   rangeCollider: {fileID: 8497499554232507929}
   animator: {fileID: 7594236956760525610}
-  coolDown: 0.1
+  coolDown: 1.6
   coolDownTimer: 0
   projectilePrefab: {fileID: 1415539140, guid: 8aff5f3f080257e45a0bb330788dd6c1, type: 3}
   firePoint: {fileID: 4327587012312176925}
-  buildCooldown: 5
+  buildCooldown: 10
   rangeIndicator: {fileID: 6440905927636768954}
 --- !u!58 &8497499554232507929
 CircleCollider2D:

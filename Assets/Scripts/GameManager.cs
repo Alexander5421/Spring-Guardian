@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameState gameState;
     public GameObject UI_heart;
     public GameObject UI_money;
+    public GameObject blanket;
 
     //TODO call after player hit start in the main menu
     private void Start()
@@ -24,11 +25,11 @@ public class GameManager : MonoBehaviour
         Level.SetActive(false);
         UI_heart.SetActive(false);
         UI_money.SetActive(false);
+        blanket.SetActive(false);
     }
 
     private void StartMenu()
     {
-        Debug.Log("hello");
         gameState = GameState.Menu;
         startMenu.SetActive(true);
     }
@@ -72,6 +73,7 @@ public class GameManager : MonoBehaviour
     [ContextMenu("SwitchToLevelMode")]
     public void NewLevelStart ()
     {
+        blanket.SetActive(true);
         gameState = GameState.InGame;
         // set health to max
         GameData.Instance.playerData.NewWave();
@@ -97,6 +99,7 @@ public class GameManager : MonoBehaviour
         GameData.Instance.playerData.playerHand.EnableAllButtons();
         gameState = GameState.Store;
         Level.SetActive(false);
+        blanket.SetActive(false);
         Store.SetActive(true);
         GameData.Instance.playerData.playerHand.gameObject.SetActive(true);
         mainCamera.backgroundColor = StoreColor;
@@ -106,6 +109,7 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.GameOver;
         Debug.Log("GameEnd");
+        blanket.SetActive(false);
         infoBoard.SetBoard(win? "You Win" : "Game Over");
         infoBoard.gameObject.SetActive(true);
         //pause game
