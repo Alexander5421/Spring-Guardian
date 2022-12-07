@@ -139,7 +139,7 @@ MonoBehaviour:
   coolDownTimer: 0
   projectilePrefab: {fileID: 1415539140, guid: 8aff5f3f080257e45a0bb330788dd6c1, type: 3}
   firePoint: {fileID: 4327587012312176925}
-  buildCooldown: 10
+  buildCooldown: 5
   rangeIndicator: {fileID: 6440905927636768954}
 --- !u!58 &8497499554232507929
 CircleCollider2D:
@@ -156,7 +156,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1.7
 --- !u!1 &8950375938396791561
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +230,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -1158394850, guid: 99b73d3741a30e0449efa91678929ff6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

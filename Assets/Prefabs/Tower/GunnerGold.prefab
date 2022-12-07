@@ -291,5 +291,5 @@ MonoBehaviour:
   coolDownTimer: 0
   projectilePrefab: {fileID: -6617422018920836718, guid: a0e2fd93ed8b68d409ca500b2d18b1ee, type: 3}
   firePoint: {fileID: 7934684355293657646}
-  buildCooldown: 12
+  buildCooldown: 8
   rangeIndicator: {fileID: 6408173480020825898}

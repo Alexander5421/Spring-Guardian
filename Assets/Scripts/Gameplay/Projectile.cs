@@ -10,12 +10,23 @@ public class Projectile : MonoBehaviour
     
     public void Start()
     {
-        if (target.isDead)
-        {
+        try{
+            if (target.isDead)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            target.OnDeath += (targetOnOnDeath);
+        }
+        catch (MissingReferenceException){
             Destroy(gameObject);
             return;
         }
-        target.OnDeath += (targetOnOnDeath);
+        catch (NullReferenceException){
+            Destroy(gameObject);
+            return;
+        }
+
     }
 
     protected void targetOnOnDeath(Enemy _)
@@ -25,17 +36,28 @@ public class Projectile : MonoBehaviour
 
     public virtual void FixedUpdate()
     {
-        // Move towards target
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-        
-        // check distance to target
-        if (Vector3.Distance(transform.position, target.transform.position) < 0.1f)
-        {
-            // hit target
-            target.OnDeath -= (targetOnOnDeath);
-            Destroy(gameObject);
-           target.TakeDamage(dmg);
+        try {
+            // Move towards target
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+            
+            // check distance to target
+            if (Vector3.Distance(transform.position, target.transform.position) < 0.1f)
+            {
+                // hit target
+                target.OnDeath -= (targetOnOnDeath);
+                Destroy(gameObject);
+            target.TakeDamage(dmg);
+            }
         }
+        catch (MissingReferenceException){
+            Destroy(gameObject);
+            return;
+        }
+        catch (NullReferenceException){
+            Destroy(gameObject);
+            return;
+        }
+
     }
     
     

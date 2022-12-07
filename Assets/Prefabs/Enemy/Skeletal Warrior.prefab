@@ -126,8 +126,8 @@ MonoBehaviour:
   point: 2
   healthBar: {fileID: 4940989540883630270}
   animator: {fileID: 0}
-  reward: 15
-  MaxHealth: 15
+  reward: 20
+  MaxHealth: 12
   isDead: 0
 --- !u!61 &5064794377789532994
 BoxCollider2D:

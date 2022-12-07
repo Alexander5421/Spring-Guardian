@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject startMenu;
     public GameObject Store;
+    public StoreManager currentStore;
     public GameObject Level;
     public int waveNumber;
     public Camera mainCamera;
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject UI_heart;
     public GameObject UI_money;
     public GameObject blanket;
+    public SpawnManager currentSpawns;
 
     //TODO call after player hit start in the main menu
     private void Start()
@@ -107,14 +109,19 @@ public class GameManager : MonoBehaviour
 
     public void GameEnd(bool win)
     {
+        Time.timeScale = 0;
         gameState = GameState.GameOver;
         Debug.Log("GameEnd");
         blanket.SetActive(false);
         infoBoard.SetBoard(win? "You Win" : "Game Over");
         infoBoard.gameObject.SetActive(true);
-        //pause game
-        Time.timeScale = 0;
-        
+        currentSpawns.RemoveAllspawner();
+        try{
+            currentStore.Restart();
+        }
+        catch(NullReferenceException){
+            Debug.Log("we have not already initialize the shop, skip...");
+        }
     }
 }
 

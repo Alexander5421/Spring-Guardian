@@ -54,13 +54,10 @@ public class StoreManager : MonoBehaviour
         }
         // disable the prefab
         storeCardPrefab.gameObject.SetActive(false);
-        
-
     }
 
     private void Awake()
     {
-        
         InitializeCards();
     }
 
@@ -72,7 +69,25 @@ public class StoreManager : MonoBehaviour
     }
     
     
-
+    public void Restart(){
+        level = 0;
+        storeLevelIndicator.sprite = storeLevelSprites[0];
+        int amount = level + 2;
+        for (int i=0;i<amount;i++)
+        {
+            if (isCardFreeze[i])
+            {
+                currentSellCard[i].Freeze();
+            }
+            int randomIndex = UnityEngine.Random.Range(0, cardPool[level].cardPool.Length);
+            currentSellCard[i].towerType = cardPool[level].cardPool[randomIndex];
+            currentSellCard[i].cardPoster.sprite = carSprites[cardPool[level].cardPool[randomIndex]];
+            currentSellCard[i].price = cardCost[randomIndex];
+            currentSellCard[i].nameText.text = cardNames[cardPool[level].cardPool[randomIndex]];
+            currentSellCard[i].card.SetActive(true);
+            currentSellCard[i].Restore();
+        }
+    }
     public void Refresh()
     {
         // randomly pick 5 card from cardPool and put them into currentSellCard;
@@ -116,8 +131,6 @@ public class StoreManager : MonoBehaviour
        
         int index = Array.IndexOf(currentSellCard, storeCard);
         isCardFreeze[index] = !isCardFreeze[index];
-       
-        
     }
     
     public void UpgradeLevel()

@@ -171,7 +171,7 @@ MonoBehaviour:
   pathIndex: 0
   enemy: 000000000000000001000000010000000000000001000000000000000000000001000000
   spawnInterval:
-  - 0
+  - 3
   - 1
   - 2
   - 2
@@ -1248,6 +1248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startMenu: {fileID: 1863621122}
   Store: {fileID: 8992110863148034466}
+  currentStore: {fileID: 8992110863148034396}
   Level: {fileID: 471581435}
   waveNumber: 0
   mainCamera: {fileID: 1421453205}
@@ -1258,6 +1259,7 @@ MonoBehaviour:
   UI_heart: {fileID: 8992110863848436024}
   UI_money: {fileID: 598791208}
   blanket: {fileID: 131164403}
+  currentSpawns: {fileID: 1397464253}
 --- !u!1 &162287475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,7 +1341,7 @@ MonoBehaviour:
   pathIndex: 0
   enemy: 030000000100000001000000010000000100000001000000
   spawnInterval:
-  - 90
+  - 70
   - 2
   - 2
   - 2
@@ -1701,7 +1703,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 249631124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.55, y: -0.04, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1709,7 +1711,7 @@ Transform:
   - {fileID: 1163360275}
   - {fileID: 351132783}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &265749405
 GameObject:
@@ -2071,7 +2073,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 351132782}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: -1.06, z: 0}
+  m_LocalPosition: {x: 0.93, y: -1.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2547,10 +2549,10 @@ MonoBehaviour:
   - 4
   - 3
   - 3
-  - 2
-  - 2
-  - 1
-  - 0.5
+  - 4
+  - 4
+  - 3
+  - 3
 --- !u!1 &407810231
 GameObject:
   m_ObjectHideFlags: 0
@@ -3339,55 +3341,6 @@ Transform:
   m_Father: {fileID: 1397464254}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &512323926
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 512323927}
-  - component: {fileID: 512323928}
-  m_Layer: 0
-  m_Name: tes
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &512323927
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 512323926}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.29, y: -5.71, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1397464254}
-  m_RootOrder: 29
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &512323928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 512323926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 973c6772b0c74e16836444f2b64e6fc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnManager: {fileID: 1397464253}
-  pathIndex: 0
-  enemy: 00000000
-  spawnInterval:
-  - 0
 --- !u!1 &531061820
 GameObject:
   m_ObjectHideFlags: 0
@@ -3792,15 +3745,15 @@ MonoBehaviour:
   enemy: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   spawnInterval:
   - 20
-  - 2
-  - 2
-  - 3
-  - 3
-  - 2
-  - 1
-  - 3
-  - 1
-  - 2
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
 --- !u!1 &598791208
 GameObject:
   m_ObjectHideFlags: 0
@@ -5360,27 +5313,27 @@ MonoBehaviour:
   pathIndex: 2
   enemy: 040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000
   spawnInterval:
-  - 0
+  - 3
   - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
+  - 0.5
+  - 0.5
   - 1
   - 1
   - 0.5
   - 0.5
   - 0.5
-  - 0.2
-  - 0.2
-  - 0.2
-  - 0.2
-  - 0.2
-  - 0.2
-  - 0.2
-  - 0.2
-  - 0.2
+  - 1
+  - 1
+  - 0.5
+  - 0.5
+  - 1
+  - 1
+  - 0.5
+  - 0.5
+  - 1
+  - 1
+  - 1
+  - 1
 --- !u!1 &731079746
 GameObject:
   m_ObjectHideFlags: 0
@@ -6390,8 +6343,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 100
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 774248d672b24354693846e8a6ce6860, type: 2}
+  m_sharedMaterial: {fileID: -2472188349380959840, guid: 774248d672b24354693846e8a6ce6860, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6421,7 +6374,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -6480,7 +6433,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: -2472188349380959840, guid: 774248d672b24354693846e8a6ce6860, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7611,8 +7564,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: You Win
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 774248d672b24354693846e8a6ce6860, type: 2}
+  m_sharedMaterial: {fileID: -2472188349380959840, guid: 774248d672b24354693846e8a6ce6860, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7678,7 +7631,7 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_renderer: {fileID: 1016435388}
   m_maskType: 0
 --- !u!23 &1016435388
@@ -7701,7 +7654,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: -2472188349380959840, guid: 774248d672b24354693846e8a6ce6860, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8187,7 +8140,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163360274}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.16, y: -1.05, z: 0}
+  m_LocalPosition: {x: -0.93, y: -1.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8539,7 +8492,7 @@ MonoBehaviour:
   pathIndex: 1
   enemy: 010000000000000001000000010000000000000001000000010000000000000001000000
   spawnInterval:
-  - 30
+  - 20
   - 2
   - 2
   - 2
@@ -8557,7 +8510,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2492958515390536276, guid: 7a07127dc163de54783f60f5a413c976, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2492958515390536276, guid: 7a07127dc163de54783f60f5a413c976, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8869,7 +8822,7 @@ MonoBehaviour:
   pathIndex: 2
   enemy: 010000000100000001000000050000000500000005000000
   spawnInterval:
-  - 50
+  - 40
   - 2
   - 1.5
   - 1.5
@@ -9697,9 +9650,35 @@ MonoBehaviour:
   existingEnemies: []
   waveSpawners:
   - list:
-    - {fileID: 512323928}
+    - {fileID: 1895711475}
   - list:
-    - {fileID: 512323928}
+    - {fileID: 592645748}
+    - {fileID: 375927242}
+  - list:
+    - {fileID: 927493027}
+    - {fileID: 1655712133}
+  - list:
+    - {fileID: 720033065}
+  - list:
+    - {fileID: 1146449251}
+    - {fileID: 844771108}
+    - {fileID: 1973660219}
+  - list:
+    - {fileID: 2014965449}
+    - {fileID: 789793237}
+    - {fileID: 1583429515}
+  - list:
+    - {fileID: 1449564513}
+    - {fileID: 1809248446}
+    - {fileID: 1728911766}
+    - {fileID: 165895461}
+  - list:
+    - {fileID: 21779223}
+    - {fileID: 1180442540}
+    - {fileID: 1227671698}
+    - {fileID: 2025315525}
+    - {fileID: 136292418}
+    - {fileID: 606937378}
 --- !u!4 &1397464254
 Transform:
   m_ObjectHideFlags: 0
@@ -9741,7 +9720,6 @@ Transform:
   - {fileID: 2025315524}
   - {fileID: 136292417}
   - {fileID: 606937377}
-  - {fileID: 512323927}
   m_Father: {fileID: 471581436}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9894,7 +9872,7 @@ MonoBehaviour:
   pathIndex: 1
   enemy: 01000000010000000100000001000000010000000100000001000000
   spawnInterval:
-  - 0
+  - 3
   - 3
   - 4
   - 2
@@ -11505,7 +11483,7 @@ MonoBehaviour:
   pathIndex: 1
   enemy: 00000000010000000000000000000000000000000100000001000000000000000000000000000000
   spawnInterval:
-  - 60
+  - 35
   - 3
   - 5
   - 0.5
@@ -11771,7 +11749,7 @@ MonoBehaviour:
   pathIndex: 5
   enemy: 01000000010000000100000001000000010000000100000001000000
   spawnInterval:
-  - 60
+  - 50
   - 3
   - 4
   - 1
@@ -12591,8 +12569,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 100
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 774248d672b24354693846e8a6ce6860, type: 2}
+  m_sharedMaterial: {fileID: -2472188349380959840, guid: 774248d672b24354693846e8a6ce6860, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12622,7 +12600,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -12681,7 +12659,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: -2472188349380959840, guid: 774248d672b24354693846e8a6ce6860, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13199,12 +13177,12 @@ MonoBehaviour:
   - 5
   - 5
   - 4
-  - 3
-  - 3
-  - 2
-  - 2
-  - 1
-  - 0.5
+  - 5
+  - 5
+  - 4
+  - 4
+  - 4
+  - 4
 --- !u!1 &1901795622
 GameObject:
   m_ObjectHideFlags: 0
@@ -13988,7 +13966,7 @@ MonoBehaviour:
   pathIndex: 3
   enemy: 040000000400000004000000040000000400000004000000040000000400000004000000
   spawnInterval:
-  - 0
+  - 3
   - 1
   - 1
   - 1
@@ -15367,7 +15345,7 @@ MonoBehaviour:
   - {fileID: -2104091425, guid: 92828c9925b06f64b81c38ff6f936f94, type: 3}
   - {fileID: 2001382520, guid: 92828c9925b06f64b81c38ff6f936f94, type: 3}
   level: 0
-  levelCost: 64000000640000006400000064000000
+  levelCost: 64000000c80000002c01000090010000
   carSprites:
   - {fileID: -1158394850, guid: 99b73d3741a30e0449efa91678929ff6, type: 3}
   - {fileID: 1730093403, guid: 049db08cf93058c41a8d8e40cbf60c2b, type: 3}
@@ -15398,7 +15376,7 @@ MonoBehaviour:
   refreshCost: 20
   refreshCostText: {fileID: 881571072}
   levelCostText: {fileID: 1843137005}
-  cardCost: 280000009600000046000000fa000000
+  cardCost: 1e0000006400000032000000c8000000
   blanket: {fileID: 131164403}
 --- !u!4 &8992110863148034397
 Transform:
@@ -15575,7 +15553,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8992110863848436024}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.79, y: 4.94, z: 0}
+  m_LocalPosition: {x: 4.25, y: 4.94, z: 0}
   m_LocalScale: {x: 0.36, y: 0.36, z: 0.36}
   m_ConstrainProportionsScale: 0
   m_Children:

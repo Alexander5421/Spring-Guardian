@@ -42,6 +42,14 @@ public class SpawnManager : MonoBehaviour
         enemyScript.pathCreator = paths[pathIndex];
     }
 
+    public void RemoveAllspawner(){
+        var spawners = waveSpawners[currentWave];
+        foreach (Spawner spawner in spawners.list)
+        {
+            spawner.gameObject.SetActive(false);
+        }
+    }
+
     private void EnemyQuit(Enemy enemy)
     {
         existingEnemies.Remove(enemy);
@@ -49,6 +57,7 @@ public class SpawnManager : MonoBehaviour
         // check whether the wave is over
         if (IsWaveOver())
         {
+            RemoveAllspawner();
             // print(currentWave);
             // check whether there is no more wave
             if (currentWave == waveSpawners.Count - 1)
@@ -64,9 +73,10 @@ public class SpawnManager : MonoBehaviour
                 // {
                 //     return;
                 // }
-                currentWave++;
-                GameData.Instance.gameManager.StoreStart();
-                
+                if (GameData.Instance.playerData.Health > 0){
+                    currentWave++;
+                    GameData.Instance.gameManager.StoreStart();
+                }
             }
         }
     }
