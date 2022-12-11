@@ -32,71 +32,36 @@ public class Tower : MonoBehaviour
         }
         // if the cooldown timer is not 0, reduce it by the time since the last frame
         animator.SetBool("IsAttack",true);
+        // if any potential targets is dead, error out
+        if (potentialTargets.Any(t => t == null || t.isDead))
+        {
+            Debug.LogError("A potential target is null");
+            return;
+        }
+        
         // if the cooldown timer is 0, shoot a projectile at the the target has the largest progress
         if (coolDownTimer <= 0)
         {
             coolDownTimer = coolDown;
-            if (potentialTargets.Count()== 0){
-                animator.SetBool("IsAttack",false);
-                return;
-            }
             Enemy target = potentialTargets[0];
+          
+            
             float maxProgress = 0;
-            if (potentialTargets.Count()== 0){
-                animator.SetBool("IsAttack",false);
-                return;
+            foreach (var enemy in potentialTargets)
+            {
+                if (!(enemy.Progress > maxProgress)) continue;
+                target = enemy;
+                maxProgress = enemy.Progress;
             }
-            try{
-                foreach (var enemy in potentialTargets)
-                {
-                    if (!(enemy.Progress > maxProgress)) continue;
-                    target = enemy;
-                    maxProgress = enemy.Progress;
-                }
-            }
-            catch (MissingReferenceException){
-                animator.SetBool("IsAttack",false);
-                return;
-            }
-            catch (NullReferenceException){
-                animator.SetBool("IsAttack",false);
-                return;
-            }
-
             // instantiate the projectile at the fire point
             // direction is the vector from the fire point to the target
             // only the x and y components are used
+            var direction = target.transform.position - firePoint.position;
+            direction.z = 0;
+            //set the rotation of the projectile to the direction
             Projectile projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-            try{
-                var direction = target.transform.position - firePoint.position;
-                direction.z = 0;
-                if (direction.x <= 0){
-                    animator.SetBool("IsRight", false);
-                }
-                if (direction.x > 0){
-                    animator.SetBool("IsRight", true);
-                }
-                //set the rotation of the projectile to the direction
-                projectile.transform.right = direction;
-            }
-            catch (MissingReferenceException){
-                animator.SetBool("IsAttack",false);
-                return;
-            }
-            catch (NullReferenceException){
-                animator.SetBool("IsAttack",false);
-                return;
-            }
-            
-            try {
-                projectile.target = target;
-            }
-            catch (MissingReferenceException){
-                animator.SetBool("IsAttack",false);
-            }
-            catch (NullReferenceException){
-                animator.SetBool("IsAttack",false);
-            }
+            projectile.transform.right = direction;
+            projectile.target = target;
                 
         }
     }

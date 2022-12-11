@@ -18,6 +18,18 @@ public class GameManager : MonoBehaviour
     public GameObject blanket;
     public SpawnManager currentSpawns;
 
+    // context menu for testing triple the game speed
+    [ContextMenu("Triple Game Speed")]
+    public void TripleGameSpeed()
+    {
+        Time.timeScale = 3;
+    }
+    // return to normal game speed
+    [ContextMenu("Normal Game Speed")]
+    public void NormalGameSpeed()
+    {
+        Time.timeScale = 1;
+    }
     //TODO call after player hit start in the main menu
     private void Start()
     {

@@ -15460,7 +15460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   money: 0
   towerList: 0000000000000000
-  initialTowerList: 0000000000000000
+  initialTowerList: 000000000000000002000000
   moneyText: {fileID: 672863914}
   healthText: {fileID: 542581348}
   playerHand: {fileID: 5322095764789407374}
