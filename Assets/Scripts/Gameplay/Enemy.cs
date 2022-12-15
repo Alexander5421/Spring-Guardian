@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using PathCreation;
 using UnityEngine;
 
@@ -33,6 +34,11 @@ public class Enemy : MonoBehaviour
 
     private float distanceSofar = 0;
     private static readonly int IsDie = Animator.StringToHash("IsDie");
+    
+    // MMFeadbacks
+    public MMF_Player deathFeedbacks;
+    public MMF_Player injuryFeedbacks;
+    private MMF_FloatingText dmgIndicator;
 
     public float Progress
     {
@@ -48,18 +54,21 @@ public class Enemy : MonoBehaviour
         }
         animator = GetComponent<Animator>();
         health = MaxHealth;
+        dmgIndicator = injuryFeedbacks.GetFeedbackOfType<MMF_FloatingText>();
     }
     
     public void TakeDamage(int damage)
     {
         health -= damage;
+        dmgIndicator.Value = damage.ToString();
+        injuryFeedbacks?.PlayFeedbacks();
         // update health bar
         healthBar.healthRatio = (float) health / MaxHealth;
-        
-        if (health <= 0)
+        if (health <= 0 && !isDead)
         {
             // log
             healthBar.healthRatio = 0;
+            deathFeedbacks?.PlayFeedbacks();
             OnDeath?.Invoke(this);
             OnQuit?.Invoke(this);
             GameData.Instance.playerData.Money += reward;

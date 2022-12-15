@@ -219,14 +219,19 @@ public class PlayerData : MonoBehaviour
     public void OnBuildSlotClick( buildSlot slot){
         if (slot.currentTower!=null)
         {
+            if (slot.currentTower.rangeIndicator.gameObject.activeSelf)
+            {
+                slot.currentTower.HideRange();
+            }
+            else
+            {
+                slot.currentTower.ShowRange();
+            }
             return;
-            // slot.currentTower.ShowRange();
         }
-        else
-        {
-            currentSlot = slot;
-            playerHand.gameObject.SetActive(true);
-        }
+        // no tower yet
+        currentSlot = slot;
+        playerHand.gameObject.SetActive(true);
     }
     #endregion
 
