@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11fabdde66674d939516a9d399abcfc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 6
+  dmg: 8
   target: {fileID: 0}
   speed: 10
   range: 2
