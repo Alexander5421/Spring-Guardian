@@ -167,8 +167,7 @@ public class StoreManager : MonoBehaviour
     
     public void LeaveStore()
     {
-        GameData.Instance.gameManager.NewLevelStart();
-        blanket.gameObject.SetActive(true);
+        GameData.Instance.gameManager.NewLevelStartWithTrans();
     }
     
 }

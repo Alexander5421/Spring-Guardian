@@ -8,6 +8,7 @@ public class GameData : MonoBehaviour
     public StoreManager storeManager;
     public PlayerData playerData;
     public GameManager gameManager;
+    public SoundManager soundManager;
 
     public Tower[] towerPrefabs;
 

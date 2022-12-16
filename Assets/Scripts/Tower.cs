@@ -28,6 +28,10 @@ public class Tower : MonoBehaviour
         {
             coolDownTimer -= Time.deltaTime;
         }
+        if (potentialTargets.Any(t => t == null || t.isDead))
+        {
+            potentialTargets.RemoveAll(t => t == null || t.isDead);                        
+        }
         // if there are no targets, do nothing
         if (potentialTargets.Count == 0)
         {
@@ -37,11 +41,7 @@ public class Tower : MonoBehaviour
         // if the cooldown timer is not 0, reduce it by the time since the last frame
         animator.SetBool("IsAttack",true);
         // if any potential targets is dead, error out
-        if (potentialTargets.Any(t => t == null || t.isDead))
-        {
-            Debug.LogError("A potential target is null");
-            return;
-        }
+        
         
         // if the cooldown timer is 0, shoot a projectile at the the target has the largest progress
         if (coolDownTimer <= 0)

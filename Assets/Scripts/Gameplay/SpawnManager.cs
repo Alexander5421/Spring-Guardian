@@ -96,6 +96,12 @@ public class SpawnManager : MonoBehaviour
     
     public void NewWaveStart()
     {
+        //check whether there is no more wave
+        if (currentWave == waveSpawners.Count - 1)
+        {
+            // play different music
+            GameData.Instance.soundManager.Play(3);
+        }
         var spawners = waveSpawners[currentWave];
         foreach (Spawner spawner in spawners.list)
         {

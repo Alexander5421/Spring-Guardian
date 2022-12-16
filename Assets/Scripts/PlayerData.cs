@@ -244,7 +244,7 @@ public class PlayerData : MonoBehaviour
         }
         
         // buildSlot get all component of buildSlot in the scene
-        buildSlots = FindObjectsOfType<buildSlot>();
+        // buildSlots = FindObjectsOfType<buildSlot>(includeInactive:true);
     }
 
     // active when player click the right mouse button

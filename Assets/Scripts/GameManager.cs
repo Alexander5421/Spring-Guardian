@@ -1,5 +1,7 @@
 ﻿using System;
+using MoreMountains.Feedbacks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -17,8 +19,26 @@ public class GameManager : MonoBehaviour
     public GameObject UI_money;
     public GameObject blanket;
     public SpawnManager currentSpawns;
-
+    public MMF_Player transFeedbacks;
+    private MMF_Events eventFeedBacks;
     // context menu for testing triple the game speed
+    private void Awake()
+    {
+        transFeedbacks.Initialization();
+        eventFeedBacks = transFeedbacks.GetFeedbackOfType<MMF_Events>();
+    }
+
+    private void Trans(UnityAction callback)
+    {
+        eventFeedBacks.PlayEvents.AddListener(() =>
+        {
+            callback.Invoke();
+            // unregister the event
+            eventFeedBacks.PlayEvents.RemoveListener(callback);
+        });
+        transFeedbacks.PlayFeedbacks();
+    }
+
     [ContextMenu("Triple Game Speed")]
     public void TripleGameSpeed()
     {
@@ -46,6 +66,7 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.Menu;
         startMenu.SetActive(true);
+        GameData.Instance.soundManager.Play(0);
     }
 
     private void Update()
@@ -54,10 +75,13 @@ public class GameManager : MonoBehaviour
         {
             if (Input.anyKeyDown)
             {
-                startMenu.SetActive(false);
-                UI_heart.SetActive(true);
-                UI_money.SetActive(true);
-                NewLevelStart();
+                Trans((() =>
+                {
+                    startMenu.SetActive(false);
+                    UI_heart.SetActive(true);
+                    UI_money.SetActive(true);
+                    NewLevelStart();
+                }));
                 // if the game is in the menu state
             }
         }
@@ -67,13 +91,17 @@ public class GameManager : MonoBehaviour
     
     public void ReturnToMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Trans(Start);
     }
 
     public void Restart()
     {
-        RestartWithoutIntoNewLevel();
-        NewLevelStart();
+        Trans((() =>
+        {
+            RestartWithoutIntoNewLevel();
+            NewLevelStart();
+        }));
+        
     }
     public void RestartWithoutIntoNewLevel()
     {
@@ -87,6 +115,7 @@ public class GameManager : MonoBehaviour
     [ContextMenu("SwitchToLevelMode")]
     public void NewLevelStart ()
     {
+        GameData.Instance.soundManager.Play(2);
         blanket.SetActive(true);
         gameState = GameState.InGame;
         // set health to max
@@ -98,25 +127,36 @@ public class GameManager : MonoBehaviour
         mainCamera.backgroundColor = LevelColor;
     }
 
+    public void NewLevelStartWithTrans()
+    {
+        Trans((NewLevelStart));
+    }
+    
+
     [ContextMenu("SwitchToStoreMode")]
     public void StoreStart()
     {
-        // find all gameobjects with tag "Enemy" and destroy them
-        // some enemies still in death animation,not destoried
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemy in enemies)
+        Trans((() =>
         {
-            Destroy(enemy);
-        }
-        GameData.Instance.playerData.RemoveAllTower();
-        GameData.Instance.playerData.ResetCoolDown();
-        GameData.Instance.playerData.playerHand.EnableAllButtons();
-        gameState = GameState.Store;
-        Level.SetActive(false);
-        blanket.SetActive(false);
-        Store.SetActive(true);
-        GameData.Instance.playerData.playerHand.gameObject.SetActive(true);
-        mainCamera.backgroundColor = StoreColor;
+            GameData.Instance.soundManager.Play(1);
+            // find all gameobjects with tag "Enemy" and destroy them
+            // some enemies still in death animation,not destoried
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in enemies)
+            {
+                Destroy(enemy);
+            }
+            GameData.Instance.playerData.RemoveAllTower();
+            GameData.Instance.playerData.ResetCoolDown();
+            GameData.Instance.playerData.playerHand.EnableAllButtons();
+            gameState = GameState.Store;
+            Level.SetActive(false);
+            blanket.SetActive(false);
+            Store.SetActive(true);
+            GameData.Instance.playerData.playerHand.gameObject.SetActive(true);
+            mainCamera.backgroundColor = StoreColor;
+        }));
+        
     }
 
     public void GameEnd(bool win)
@@ -132,6 +172,7 @@ public class GameManager : MonoBehaviour
             currentStore.Restart();
         }
         catch(NullReferenceException){
+            // happen when player die in the first wave. 
             Debug.Log("we have not already initialize the shop, skip...");
         }
     }
