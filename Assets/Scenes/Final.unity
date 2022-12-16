@@ -18216,7 +18216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   money: 0
   towerList: 0000000000000000
-  initialTowerList: 000000000000000003000000
+  initialTowerList: 0000000000000000
   moneyText: {fileID: 672863914}
   healthText: {fileID: 542581348}
   playerHand: {fileID: 5322095764789407374}
@@ -18231,6 +18231,7 @@ MonoBehaviour:
   - {fileID: 1651900477}
   - {fileID: 236236926}
   - {fileID: 1849598876}
+  - {fileID: 682364977}
   store: {fileID: 8992110863148034396}
   redArrow: {fileID: 13079783}
 --- !u!1 &8992110863848436024
