@@ -32,6 +32,7 @@ public class StoreManager : MonoBehaviour
     public TextMeshPro refreshCostText, levelCostText;
     public int[] cardCost;
     public GameObject blanket;
+    public GameObject redArrow;
 
 
     [ContextMenu("Create Store Slots")]
@@ -63,6 +64,7 @@ public class StoreManager : MonoBehaviour
 
     private void OnEnable()
     {
+        redArrow.SetActive(false);
         refreshCostText.text = refreshCost.ToString();
         levelCostText.text = levelCost[level].ToString();
         Refresh();

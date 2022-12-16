@@ -215,6 +215,8 @@ public class PlayerData : MonoBehaviour
         }
     }
 
+    public GameObject redArrow;//the red arrow indicate player which slot is chosen
+    
     // active player hand when player click a build slot
     public void OnBuildSlotClick( buildSlot slot){
         if (slot.currentTower!=null)
@@ -232,6 +234,10 @@ public class PlayerData : MonoBehaviour
         // no tower yet
         currentSlot = slot;
         playerHand.gameObject.SetActive(true);
+        redArrow.SetActive(false);
+        var add = new Vector3(0, 1.3f, 0);
+        redArrow.transform.position = currentSlot.transform.position + add;
+        redArrow.SetActive(true);
     }
     #endregion
 
@@ -292,6 +298,7 @@ public class PlayerData : MonoBehaviour
     }
     
     public void DisableBuild(){
+        redArrow.SetActive(false);
         playerHand.gameObject.SetActive(false);
     }
 }
